@@ -111,7 +111,7 @@
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="idPesquisa" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="TxtidPesquisa" min="-2" pref="143" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btEncontrar" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -159,7 +159,7 @@
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="idPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtidPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btEncontrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
@@ -324,6 +324,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtID">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTitulo">
           <Events>
@@ -334,7 +337,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtQtde">
         </Component>
-        <Component class="javax.swing.JTextField" name="idPesquisa">
+        <Component class="javax.swing.JTextField" name="TxtidPesquisa">
         </Component>
       </SubComponents>
     </Container>

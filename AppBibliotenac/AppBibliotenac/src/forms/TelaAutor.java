@@ -6,6 +6,8 @@ package forms;
 
 import beans.Autor;
 import dao.AutorDAO;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,9 +15,9 @@ import dao.AutorDAO;
  */
 public class TelaAutor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaProcurarBiblioteca
-     */
+    private Connection conn;
+    
+    
     public TelaAutor() {
         initComponents();
     }
@@ -47,7 +49,7 @@ public class TelaAutor extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         txtQtde = new javax.swing.JTextField();
-        idPesquisa = new javax.swing.JTextField();
+        TxtidPesquisa = new javax.swing.JTextField();
 
         jLabel5.setText("jLabel5");
 
@@ -129,6 +131,8 @@ public class TelaAutor extends javax.swing.JFrame {
             }
         });
 
+        txtID.setEnabled(false);
+
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
@@ -182,7 +186,7 @@ public class TelaAutor extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(idPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtidPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btEncontrar))
                             .addComponent(jLabel7))))
@@ -220,7 +224,7 @@ public class TelaAutor extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtidPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEncontrar))
                 .addGap(7, 7, 7)
                 .addComponent(btRelatorio1)
@@ -266,6 +270,7 @@ public class TelaAutor extends javax.swing.JFrame {
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         //Botão atualizar (Update).
 
+  
         int id = Integer.parseInt(txtID.getText());
         String titulo = txtTitulo.getText();
         int qtde =Integer.parseInt(txtQtde.getText());
@@ -278,12 +283,13 @@ public class TelaAutor extends javax.swing.JFrame {
         a.setAutor(autor);
         
         AutorDAO autorDAO = new AutorDAO();
-        autorDAO.alterar(a); **
+        autorDAO.alterar(a);
         
         txtID.setText("");
         txtTitulo.setText("");
         txtQtde.setText("");
         txtAutor.setText("");
+        
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -299,16 +305,16 @@ public class TelaAutor extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEncontrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEncontrarActionPerformed
-        int idPesquisa = Integer.parseInt(idPesquisa.getText());
+        int idPesquisa = Integer.parseInt(TxtidPesquisa.getText());
         AutorDAO autorDAO = new AutorDAO();
-        Autor a = AutorDAO.getAutor(idPesquisa);
+        Autor a = autorDAO.getAutor(idPesquisa);
         if(a == null){
             JOptionPane.showMessageDialog(this, "Livro não encontrado");
         }else{
-            txtID.setText(String.valueOf(p.getId()));
-            txtTitulo.setText(p.getTitulo());
-            txtQtde.setText(String.valueOf(p.getQtde()));
-            txtAutor.setText(String.valueOf(p.getAutor()));
+            txtID.setText(String.valueOf(a.getId()));
+            txtTitulo.setText(a.getTitulo());
+            txtQtde.setText(String.valueOf(a.getQtde()));
+            txtAutor.setText(a.getAutor());
            
         }
     }//GEN-LAST:event_btEncontrarActionPerformed
@@ -361,12 +367,12 @@ public class TelaAutor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxtidPesquisa;
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCriar;
     private javax.swing.JButton btEncontrar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btRelatorio1;
-    private javax.swing.JTextField idPesquisa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

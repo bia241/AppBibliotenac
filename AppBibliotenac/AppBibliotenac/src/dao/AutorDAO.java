@@ -18,9 +18,7 @@ import java.util.List;
  */
 public class AutorDAO {
 
-    public static void alterar(Autor a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     
     private Conexao conexao;
     private Connection conn;
@@ -30,6 +28,43 @@ public class AutorDAO {
         this.conn = this.conexao.getConexao();
     }
     
+public void alterar(Autor autor) {
+    
+        String sql = "UPDATE autor SET titulo=?, autor=?, qtde=? WHERE id=?";
+        
+        try{
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setString(1, autor.getTitulo());
+            stmt.setInt(2, autor.getQtde());
+            stmt.setString(3,autor.getAutor());
+            stmt.setInt(4,autor.getId());
+            stmt.execute();
+        }catch(Exception e){
+            System.out.println("Erro ao atualizar livro: "+ e.getMessage());
+        }
+    }
+    
+ public Autor getAutor(int id){
+        String sql = "SELECT * FROM produto WHERE id =?";
+        
+        try{
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            Autor autor = new Autor();
+            rs.next();
+            autor.setId(rs.getInt("id"));
+            autor.setTitulo(rs.getString("titulo"));
+            autor.setQtde(rs.getInt("qtde"));
+            autor.setAutor(rs.getString("autor"));
+            return autor;
+        
+        }catch(Exception e){
+            System.out.println("Erro ao atualizar livro: "+ e.getMessage());
+            return null;
+        }
+        
+    }
     //Método Inserir classe ProdutoDAO.
 
 public void inserir(Autor autor){
@@ -42,7 +77,18 @@ public void inserir(Autor autor){
             stmt.setInt(3,autor.getQtde());
             stmt.execute();
         }catch(Exception e){
-            System.out.println("Erro ao inserir produto: "+ e.getMessage());
+            System.out.println("Erro ao inserir livro: "+ e.getMessage());
+        }
+    }
+
+public void excluir(int id){
+        String sql = "DELETE FROM produto WHERE id = ?";
+        try{
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1,id);
+            stmt.execute();
+        }catch(Exception e){
+            System.out.println("Erro ao excluir livro: "+ e.getMessage());
         }
     }
 
@@ -66,4 +112,5 @@ public void inserir(Autor autor){
         }
     }
     }
-}
+    
+
