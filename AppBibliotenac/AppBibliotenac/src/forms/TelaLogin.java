@@ -174,7 +174,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         if(txtLogin.getText().equals("Maryane")&& new String(txtSenha.getPassword()).equals("123456")){
         JOptionPane.showMessageDialog(null,"Acesso Permitido","Entrada de Sistema",1);
-        TelaProcurar tp = new TelaProcurar();
+        TelaAutor tp = new TelaAutor();
         tp.setVisible(true);
     }else{
         JOptionPane.showMessageDialog(null,"Acesso Negado","Entrada no Sistema",0);
